@@ -28,7 +28,7 @@ func NewProduct(core *component.Core) *Product {
 获取类目详情
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/cat/get_cat_list.html
 */
-func (p *Product) GetCatList(request *models.CategoryRequest) (response models.CategoryResponse, err error) {
+func (p *Product) GetCategory(request *models.CategoryRequest) (response models.CategoryResponse, err error) {
 	err = p.core.HttpPostJson(apiGetCatList, request, &response)
 	return
 }
