@@ -35,7 +35,7 @@ func (c *Client) request(method string, reqUrl string, reqBody string, headers .
 	}
 
 	//默认超时10S
-	timeout := c.ctx.Config.Timeout
+	timeout := c.ctx.Config.Timeout * time.Second
 	if timeout == 0 {
 		timeout = time.Duration(10) * time.Second
 	}
