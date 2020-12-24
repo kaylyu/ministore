@@ -158,9 +158,11 @@ type SpuGetListDataSpu struct {
 //搜索商品列表
 type SpuSearchRequest struct {
 	APIRequest
-	Status   SpuStatus `json:"status,default=5"` //商品状态,目前只能搜到到status=5的已上架商品
-	Page     uint64    `json:"page"`             //页码
-	PageSize uint64    `json:"page_size"`        //每页个数
+	NeedEditSpu NeedEditSpu `json:"need_edit_spu"` //默认0:获取线上数据, 1:获取草稿数据
+	Status      SpuStatus   `json:"status"`        //商品状态
+	Page        uint64      `json:"page"`          //页码
+	PageSize    uint64      `json:"page_size"`     //每页个数
+	Keyword     string      `json:"keyword"`       //关键字
 }
 
 //搜索商品列表
