@@ -26,13 +26,28 @@ import (
 func TestGetSpuList(t *testing.T) {
 	m := ministore.New(&config.Config{
 		LogPrefix:   "ministore",
-		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
+		AccessToken: "40_fWuEQtUW_X-2uWyvZM4s7cVhQoHlSdHBkHX-VeX75rNmisaYUU032mlRh-6JB8OKKjj21eHkKPGISPLeGmQVul-gS5fsDoFufQ1TTpOpJcmtBbdueHWnh0i8n1CjwWQI95I3MbPieaXXCCZkGOJhAKDKSN",
 	})
 	resp, err := m.GetSpu().GetSpuList(&models.SpuGetListRequest{
 		NeedEditSpu: models.NeedEditSpuDraft,
 		Status:      models.SpuStatusPutaway,
 		Page:        1,
 		PageSize:    10,
+	})
+	fmt.Println(util.JsonEncode(resp), err)
+}
+
+func TestSearchSpu(t *testing.T) {
+	m := ministore.New(&config.Config{
+		LogPrefix:   "ministore",
+		AccessToken: "40_fWuEQtUW_X-2uWyvZM4s7cVhQoHlSdHBkHX-VeX75rNmisaYUU032mlRh-6JB8OKKjj21eHkKPGISPLeGmQVul-gS5fsDoFufQ1TTpOpJcmtBbdueHWnh0i8n1CjwWQI95I3MbPieaXXCCZkGOJhAKDKSN",
+	})
+	resp, err := m.GetSpu().SearchSpu(&models.SpuSearchRequest{
+		NeedEditSpu: models.NeedEditSpuDraft,
+		Status:      models.SpuStatusPutaway,
+		Page:        1,
+		PageSize:    10,
+		Keyword:     "乐品乐茶茶叶",
 	})
 	fmt.Println(util.JsonEncode(resp), err)
 }

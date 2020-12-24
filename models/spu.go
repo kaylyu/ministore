@@ -168,7 +168,7 @@ type SpuSearchRequest struct {
 //搜索商品列表
 type SpuSearchResponse struct {
 	APIResponse
-	Data *SpuSearchDataSpu `json:"spus"`
+	Data []*SpuSearchDataSpu `json:"spus"`
 }
 
 //搜索商品列表获取数据
