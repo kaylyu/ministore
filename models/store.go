@@ -23,7 +23,7 @@ type StoreImgUploadRequest struct {
 }
 type StoreImgUploadResponse struct {
 	APIResponse
-	Data *ImgUploadData `json:"data"`
+	Data *ImgUploadData `json:"pic_file"`
 }
 type ImgUploadData struct {
 	MediaId    string `json:"media_id"`     //media_id
