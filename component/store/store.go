@@ -57,7 +57,9 @@ func (s *Store) RegisterCheckAuditStatus(request *models.StoreRegisterCheckAudit
 注册小商店账号
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/register/register_shop.html
 */
-func (s *Store) StoreRegister(request *models.StoreRegisterRequest) (response models.StoreRegisterResponse, err error) {
+func (s *Store) StoreRegister(request *models.StoreRegisterRequest, componentAccessToken string) (response models.StoreRegisterResponse, err error) {
+	//设置
+	request.SetComponentAccessToken(componentAccessToken)
 	err = s.core.HttpPostJson(apiRegisterShop, request, &response)
 	return
 }

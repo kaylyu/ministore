@@ -25,8 +25,14 @@ func NewHttpClient(ctx *context.Context) (client *Client) {
 }
 
 //请求
-func (c *Client) request(method string, reqUrl string, reqBody string, headers ...map[string]string) (body string, err error) {
-	uri, err := c.applyAccessToken(reqUrl)
+func (c *Client) request(method string, reqUrl string, bComponentAccessToken bool, reqBody string, headers ...map[string]string) (body string, err error) {
+	//判断使用的token
+	var uri string
+	if bComponentAccessToken {
+		uri, err = c.applyComponentAccessToken(reqUrl)
+	} else {
+		uri, err = c.applyAccessToken(reqUrl)
+	}
 	if err != nil {
 		return
 	}
@@ -76,9 +82,9 @@ func (c *Client) request(method string, reqUrl string, reqBody string, headers .
 }
 
 //POST
-func (c *Client) HttpPostJson(path string, params string, headers ...map[string]string) (body string, err error) {
+func (c *Client) HttpPostJson(path string, params string, bComponentAccessToken bool, headers ...map[string]string) (body string, err error) {
 	//请求
-	body, err = c.request("POST", path, params, headers...)
+	body, err = c.request("POST", path, bComponentAccessToken, params, headers...)
 
 	return
 }
@@ -92,6 +98,19 @@ func (c *Client) applyAccessToken(oldUrl string) (newUrl string, err error) {
 		newUrl = oldUrl + "&access_token=" + accessToken
 	} else {
 		newUrl = oldUrl + "?access_token=" + accessToken
+	}
+	return
+}
+
+/*
+在请求地址上附加上 component_access_token
+*/
+func (c *Client) applyComponentAccessToken(oldUrl string) (newUrl string, err error) {
+	componentAccessToken := c.ctx.Config.ComponentAccessToken
+	if strings.Contains(oldUrl, "?") {
+		newUrl = oldUrl + "&component_access_token=" + componentAccessToken
+	} else {
+		newUrl = oldUrl + "?component_access_token=" + componentAccessToken
 	}
 	return
 }

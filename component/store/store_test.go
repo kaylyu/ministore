@@ -9,7 +9,16 @@ import (
 	"testing"
 )
 
-func TestGetSpuList(t *testing.T) {
+func TestStoreRegister(t *testing.T) {
+	m := ministore.New(&config.Config{
+		LogPrefix:   "ministore",
+		AccessToken: "40_xKoMXQzhVQhEwBpZzqYt5UuPli1Zroc5zdd3LU8BK6cuWj_6IDDuswCaAzNfwD5OhQmWiU_VzyJBsNBP-66OshVzXVm4UsrV1-BHcfsaxzj0wp_9Q4FwT5vfL174Ns2LfKZ7zTgGZ1XcQcKYCDOgAKDKLW",
+	})
+	resp, err := m.GetStore().StoreRegister(&models.StoreRegisterRequest{}, "123333")
+	fmt.Println(util.JsonEncode(resp), err)
+}
+
+func TestGetStoreInfo(t *testing.T) {
 	m := ministore.New(&config.Config{
 		LogPrefix:   "ministore",
 		AccessToken: "40_xKoMXQzhVQhEwBpZzqYt5UuPli1Zroc5zdd3LU8BK6cuWj_6IDDuswCaAzNfwD5OhQmWiU_VzyJBsNBP-66OshVzXVm4UsrV1-BHcfsaxzj0wp_9Q4FwT5vfL174Ns2LfKZ7zTgGZ1XcQcKYCDOgAKDKLW",
