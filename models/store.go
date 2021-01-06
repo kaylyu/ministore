@@ -19,6 +19,7 @@ type StoreImgUploadRequest struct {
 	APIRequest
 	Height uint64 `json:"height"`
 	Width  uint64 `json:"width"`
+	Media  string `json:"media"`
 }
 type StoreImgUploadResponse struct {
 	APIResponse

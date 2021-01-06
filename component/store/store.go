@@ -1,6 +1,7 @@
 package store
 
 import (
+	"fmt"
 	"github.com/kaylyu/ministore/component"
 	"github.com/kaylyu/ministore/models"
 )
@@ -40,7 +41,7 @@ func (s *Store) GetStoreInfo(request *models.StoreGetInfoRequest) (response mode
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/register/uploadimg.html
 */
 func (s *Store) ImgUpload(request *models.StoreImgUploadRequest) (response models.StoreImgUploadResponse, err error) {
-	err = s.core.HttpPostJson(apiImgUpload, request, &response)
+	err = s.core.Upload(fmt.Sprintf("%s?&height=%d&width=%d", apiImgUpload, request.Height, request.Width), request.Media, &response)
 	return
 }
 

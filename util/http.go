@@ -1,10 +1,9 @@
 package util
 
 import (
-	"fmt"
+	"github.com/gogf/gf/net/ghttp"
 	"github.com/kaylyu/ministore/context"
 	"io/ioutil"
-	"net/http"
 	"strings"
 	"time"
 )
@@ -45,38 +44,19 @@ func (c *Client) request(method string, reqUrl string, bComponentAccessToken boo
 	if timeout == 0 {
 		timeout = time.Duration(10) * time.Second
 	}
-	client := &http.Client{
-		Timeout: timeout,
-	}
-	req, err := http.NewRequest(method, WxServerUrl+uri, strings.NewReader(reqBody)) //set body
-	if err != nil {
-		return
-	}
+	req := ghttp.NewClient()
+	req.SetTimeOut(timeout)
 
-	req.Header.Set("Accept", "*/*")
-	req.Header.Set("Accept-Charset", "utf-8;")
-	req.Header.Set("Content-Type", "application/json;")
+	req.SetHeader("Accept", "*/*")
+	req.SetHeader("Accept-Charset", "utf-8;")
+	req.SetHeader("Content-Type", "application/json;")
 	if len(headers) > 0 {
 		for k, v := range headers[0] {
-			req.Header.Set(k, v)
+			req.SetHeader(k, v)
 		}
 	}
-	//req
-	resp, err := client.Do(req)
-	if err != nil {
-		return
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		err = fmt.Errorf("Status: %s", resp.Status)
-		return
-	}
-	content, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return
-	}
 
-	body = string(content)
+	body = req.RequestContent(method, WxServerUrl+uri, reqBody)
 
 	return
 }
@@ -86,6 +66,26 @@ func (c *Client) HttpPostJson(path string, params string, bComponentAccessToken 
 	//请求
 	body, err = c.request("POST", path, bComponentAccessToken, params, headers...)
 
+	return
+}
+
+//上传图片
+func (c *Client) Upload(path, filename string) (body string, err error) {
+	uri, err := c.applyAccessToken(path)
+	if err != nil {
+		return
+	}
+	//上传文件
+	rsp, err := ghttp.Post(WxServerUrl+uri, "upload-file=@media:"+filename)
+	if err != nil {
+		return
+	}
+	bs, err := ioutil.ReadAll(rsp.Body)
+	if err != nil {
+		return
+	}
+
+	body = string(bs)
 	return
 }
 
@@ -114,9 +114,3 @@ func (c *Client) applyComponentAccessToken(oldUrl string) (newUrl string, err er
 	}
 	return
 }
-
-/*
-筛查微信 api 服务器响应，判断以下错误：
-- http 状态码 不为 200
-- 接口响应错误码 errcode 不为 0
-*/
