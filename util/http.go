@@ -80,6 +80,7 @@ func (c *Client) Upload(path, filename string) (body string, err error) {
 	if err != nil {
 		return
 	}
+	defer rsp.Close()
 	bs, err := ioutil.ReadAll(rsp.Body)
 	if err != nil {
 		return
