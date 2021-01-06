@@ -39,10 +39,10 @@ func (s *Store) GetStoreInfo(request *models.StoreGetInfoRequest) (response mode
 上传图片
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/register/uploadimg.html
 */
-//func (s *Store) ImgUpload(request *models.StoreImgUploadRequest) (response models.StoreImgUploadResponse, err error) {
-//	err = s.core.HttpPostJson(apiImgUpload, request, &response)
-//	return
-//}
+func (s *Store) ImgUpload(request *models.StoreImgUploadRequest) (response models.StoreImgUploadResponse, err error) {
+	err = s.core.HttpPostJson(apiImgUpload, request, &response)
+	return
+}
 
 /*
 异步状态查询

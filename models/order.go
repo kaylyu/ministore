@@ -64,7 +64,7 @@ type DeliveryInfo struct {
 	DeliveryMethod      string                 `json:"delivery_method"` //快递方式（目前只有"快递"）
 	DeliveryTime        string                 `json:"delivery_time"`   //发货时间
 	DeliveryProductInfo []*DeliveryProductInfo `json:"delivery_product_info"`
-	DeliveryAddressInfo *DeliveryAddressInfo   `json:"delivery_address_info"`
+	DeliveryAddressInfo *DeliveryAddressInfo   `json:"address_info"`
 	ExpressFee          []*ExpressFee          `json:"express_fee"`
 	InsuranceInfo       *InsuranceInfo         `json:"insurance_info"`
 }
