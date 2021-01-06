@@ -76,7 +76,7 @@ func (c *Client) Upload(path, filename string) (body string, err error) {
 		return
 	}
 	//上传文件
-	rsp, err := ghttp.Post(WxServerUrl+uri, "upload-file=@media:"+filename)
+	rsp, err := ghttp.Post(WxServerUrl+uri, "media=@file:"+filename)
 	if err != nil {
 		return
 	}

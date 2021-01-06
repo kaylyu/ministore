@@ -26,7 +26,7 @@ type StoreImgUploadResponse struct {
 	Data *ImgUploadData `json:"data"`
 }
 type ImgUploadData struct {
-	MediaId    uint64 `json:"media_id"`     //media_id
+	MediaId    string `json:"media_id"`     //media_id
 	PayMediaId string `json:"pay_media_id"` //支付media_id
 }
 
@@ -96,7 +96,7 @@ type BusiLicense struct {
 	EndDate             string   `json:"end_date"`             //结束有效期，格式：2014-01-01 1、若证件有效期为长期，请填写：长期。 2、结束时间需大于开始时间。3、有效期必须大于60天，即结束时间距当前时间需超过60天
 }
 type PicFile struct {
-	MediaId    uint64 `json:"media_id"`     //media_id
+	MediaId    string `json:"media_id"`     //media_id
 	PayMediaId string `json:"pay_media_id"` //支付media_id
 }
 type OrganizationCodeInfo struct {
