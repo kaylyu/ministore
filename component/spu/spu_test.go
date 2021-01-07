@@ -26,7 +26,7 @@ import (
 func TestGetSpuList(t *testing.T) {
 	m := ministore.New(&config.Config{
 		LogPrefix:   "ministore",
-		AccessToken: "40_fWuEQtUW_X-2uWyvZM4s7cVhQoHlSdHBkHX-VeX75rNmisaYUU032mlRh-6JB8OKKjj21eHkKPGISPLeGmQVul-gS5fsDoFufQ1TTpOpJcmtBbdueHWnh0i8n1CjwWQI95I3MbPieaXXCCZkGOJhAKDKSN",
+		AccessToken: "40_R2De-VYJKpTnEN42Z83neFP8Kmav9ARQ2liHZ2eUBEvSxmqIlh5z4IhQUYgPc0Zt-pXzciYeN381GRfcwr53zZRZJSZzF645HZV98ryPegGNR7w-uQNBM7ZgrOLOxLMRXG3LNq1JNe0j2n6_LFBaAKDGAW",
 	})
 	resp, err := m.GetSpu().GetSpuList(&models.SpuGetListRequest{
 		NeedEditSpu: models.NeedEditSpuDraft,
@@ -40,7 +40,7 @@ func TestGetSpuList(t *testing.T) {
 func TestSearchSpu(t *testing.T) {
 	m := ministore.New(&config.Config{
 		LogPrefix:   "ministore",
-		AccessToken: "40_fWuEQtUW_X-2uWyvZM4s7cVhQoHlSdHBkHX-VeX75rNmisaYUU032mlRh-6JB8OKKjj21eHkKPGISPLeGmQVul-gS5fsDoFufQ1TTpOpJcmtBbdueHWnh0i8n1CjwWQI95I3MbPieaXXCCZkGOJhAKDKSN",
+		AccessToken: "40_R2De-VYJKpTnEN42Z83neFP8Kmav9ARQ2liHZ2eUBEvSxmqIlh5z4IhQUYgPc0Zt-pXzciYeN381GRfcwr53zZRZJSZzF645HZV98ryPegGNR7w-uQNBM7ZgrOLOxLMRXG3LNq1JNe0j2n6_LFBaAKDGAW",
 	})
 	resp, err := m.GetSpu().SearchSpu(&models.SpuSearchRequest{
 		NeedEditSpu: models.NeedEditSpuDraft,

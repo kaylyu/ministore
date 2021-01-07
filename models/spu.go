@@ -154,6 +154,7 @@ type SpuGetListDataSpu struct {
 	EditStatus   SpuEditStatus  `json:"edit_status"`       //商品草稿状态
 	MinPrice     uint64         `json:"min_price"`         //商品SKU最小价格（单位：分）
 	ShopCatLists []*ShopCatList `json:"shopcat,omitempty"` //分类ID，对应信息通过 get_shop_cat 接口拿到
+	Path         string         `json:"path"`              //跳转地址
 }
 
 //搜索商品列表
@@ -169,7 +170,7 @@ type SpuSearchRequest struct {
 //搜索商品列表
 type SpuSearchResponse struct {
 	APIResponse
-	Data []*SpuSearchDataSpu `json:"spus"`
+	Data []*SpuGetListDataSpu `json:"spus"`
 }
 
 //搜索商品列表获取数据
