@@ -118,9 +118,9 @@ const (
 	CouponStatusExpired        CouponStatus = 3   //已过期
 	CouponStatusCancellation   CouponStatus = 4   //已作废
 	CouponStatusDel            CouponStatus = 5   //删除
-	CouponStatusEffectOf       CouponStatus = 102 //生效中
-	CouponStatusAlreadyExpired CouponStatus = 103 //已过期
-	CouponStatusUsed           CouponStatus = 103 //已经使用
+	CouponStatusEffectOf       CouponStatus = 100 //生效中
+	CouponStatusAlreadyExpired CouponStatus = 101 //已过期
+	CouponStatusUsed           CouponStatus = 102 //已经使用
 )
 
 //1: 企业店, 2: 个人店
