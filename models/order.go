@@ -77,7 +77,7 @@ type DeliveryAddressInfo struct {
 	PostalCode   string `json:"postal_code"`   //邮编
 	ProvinceName string `json:"province_name"` //国标收货地址第一级地址
 	CityName     string `json:"city_name"`     //国标收货地址第二级地址
-	CountryName  string `json:"country_name"`  //国标收货地址第三级地址
+	CountryName  string `json:"county_name"`   //国标收货地址第三级地址
 	DetailInfo   string `json:"detail_info"`   //详细收货地址信息
 	NationalCode string `json:"national_code"` //收货地址国家码
 	TelNumber    string `json:"tel_number"`    //收货人手机号码
