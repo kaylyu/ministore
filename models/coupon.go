@@ -42,9 +42,13 @@ type ValidInfo struct {
 	ValidType   string `json:"valid_type"`           //优惠券有效期类型
 }
 type StockInfo struct {
-	IssuedNum  uint64 `json:"issued_num"`
-	ReceiveNum uint64 `json:"receive_num"`
-	UsedNum    uint64 `json:"used_num"`
+	IssuedNum     uint64 `json:"issued_num"`
+	ReceiveNum    uint64 `json:"receive_num"`
+	UsedNum       uint64 `json:"used_num"`
+	IssuedAmount  uint64 `json:"issued_amount"`
+	ReceiveAmount uint64 `json:"receive_amount"`
+	UsedAmount    uint64 `json:"used_amount"`
+	OrderAmount   uint64 `json:"order_amount"`
 }
 
 //创建优惠券

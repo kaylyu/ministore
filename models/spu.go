@@ -99,7 +99,7 @@ type SpuGetResponse struct {
 
 //商品获取数据
 type SpuGetData struct {
-	Spu []*SpuGetDataSpu `json:"spu"`
+	Spu *SpuGetDataSpu `json:"spu"`
 }
 type SpuGetDataSpu struct {
 	ProductId    uint64         `json:"product_id"`     //小商店内部商品ID，与out_product_id二选一
@@ -117,6 +117,7 @@ type SpuGetDataSpu struct {
 	Status       SpuStatus      `json:"status"`         //商品线上状态
 	EditStatus   SpuEditStatus  `json:"edit_status"`    //商品草稿状态
 	MinPrice     uint64         `json:"min_price"`      //商品SKU最小价格（单位：分）
+	Path         string         `json:"path"`           //跳转路径
 	ShopCatLists []*ShopCatList `json:"shop_cat_list"`  //分类ID，对应信息通过 get_shop_cat 接口拿到
 }
 
