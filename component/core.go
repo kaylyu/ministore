@@ -26,7 +26,9 @@ func (c *Core) HttpPostJson(path string, request models.IAPIRequest, response in
 	if err != nil {
 		return
 	}
-	c.ctx.Logger.Debug("body", body)
+	if c.ctx.Logger != nil {
+		c.ctx.Logger.Debug("body", body)
+	}
 	err = util.JsonDecode(body, response)
 	return
 }
@@ -37,7 +39,9 @@ func (c *Core) Upload(path, filename string, response interface{}) (err error) {
 	if err != nil {
 		return
 	}
-	c.ctx.Logger.Debug("body", body)
+	if c.ctx.Logger != nil {
+		c.ctx.Logger.Debug("body", body)
+	}
 	err = util.JsonDecode(body, response)
 	return
 }

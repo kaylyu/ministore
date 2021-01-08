@@ -31,14 +31,16 @@ type MiniStore struct {
 func New(config *config.Config) *MiniStore {
 	ctx := &context.Context{
 		Config: config,
-		//Logger: log.New(os.Stdout, fmt.Sprintf("[%s] ", config.LogPrefix), log.LstdFlags|log.Llongfile),
-		Logger: &logrus.Logger{
+	}
+	//日志开启
+	if config.Debug {
+		ctx.Logger = &logrus.Logger{
 			Out:          os.Stdout,
 			Formatter:    &util.CustomerFormatter{Prefix: config.LogPrefix},
 			Level:        logrus.DebugLevel,
 			ExitFunc:     os.Exit,
 			ReportCaller: true,
-		},
+		}
 	}
 	return &MiniStore{ctx, component.NewCore(ctx)}
 }
