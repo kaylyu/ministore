@@ -42,7 +42,9 @@ func NewService(core *component.Core) *Service {
 登录验证
 See: https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/service/check_auth.html
 */
-func (p *Service) CheckAuth(request *models.CheckAuthRequest) (response models.CheckAuthResponse, err error) {
+func (p *Service) CheckAuth(request *models.CheckAuthRequest, componentAccessToken string) (response models.CheckAuthResponse, err error) {
+	//设置
+	request.SetComponentAccessToken(componentAccessToken)
 	err = p.core.HttpPostJson(apiCheckAuth, request, &response)
 	return
 }
