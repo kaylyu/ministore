@@ -167,3 +167,11 @@ const (
 	StoreRegisterSubjectTypeEnterprise StoreRegisterSubjectType = "2" //"2"：企业，营业执照上的主体类型一般为有限公司、有限责任公司。
 	StoreRegisterSubjectTypePerson     StoreRegisterSubjectType = "4" //"4"：个体工商户，营业执照上的主体类型一般为个体户、个体工商户、个体经营。
 )
+
+//装修状态1代表启用，2代表停用
+type SwitchStatus uint
+
+const (
+	SwitchStatusEnable  SwitchStatus = 1 //1代表启用
+	SwitchStatusDisable SwitchStatus = 2 //2代表停用
+)

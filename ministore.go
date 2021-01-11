@@ -3,6 +3,7 @@ package ministore
 import (
 	"github.com/kaylyu/ministore/component"
 	"github.com/kaylyu/ministore/component/coupon"
+	"github.com/kaylyu/ministore/component/decoration"
 	"github.com/kaylyu/ministore/component/delivery"
 	"github.com/kaylyu/ministore/component/order"
 	"github.com/kaylyu/ministore/component/product"
@@ -83,4 +84,9 @@ func (m *MiniStore) GetCoupon() *coupon.Coupon {
 //Store
 func (m *MiniStore) GetStore() *store.Store {
 	return store.NewStore(m.core)
+}
+
+//Decoration
+func (m *MiniStore) GetDecoration() *decoration.Decoration {
+	return decoration.NewDecoration(m.core)
 }
