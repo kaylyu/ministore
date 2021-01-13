@@ -87,8 +87,8 @@ func (s *Sku) UpdateSku(request *models.SkuUpdateRequest) (response models.SkuUp
 更新SKU价格
 https://developers.weixin.qq.com/doc/MiniStore/minishopopencomponent/API/sku/up_sku_price.html
 */
-func (s *Sku) UpdateSkuPrice(request *models.SkuUpdatePriceRequest) (response models.SkuUpdatePriceResponse, err error) {
-	err = s.core.HttpPostJson(apiUpdateSkuPrice, request, &response)
+func (s *Sku) UpdateSkuPrice(request *models.SkuUpdatePriceRequest) (response models.SkuUpdatePriceResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiUpdateSkuPrice, request, &response)
 	return
 }
 
