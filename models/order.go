@@ -3,13 +3,13 @@ package models
 //获取订单列表
 type OrderGetListRequest struct {
 	APIRequest
-	StartCreateTime string      `json:"start_create_time"` //开始时间 2020-03-25 12:05:25
-	EndCreateTime   string      `json:"end_create_time"`   //结束时间 2020-04-25 12:05:25
-	StartUpdateTime string      `json:"start_update_time"` //开始时间 2020-03-25 12:05:25
-	EndUpdateTime   string      `json:"end_update_time"`   //结束时间 2020-04-25 12:05:25
-	Page            uint64      `json:"page"`              //页码
-	PageSize        uint64      `json:"page_size"`         //每页个数
-	Status          OrderStatus `json:"status"`            //订单状态
+	StartCreateTime string      `json:"start_create_time,omitempty"` //开始时间 2020-03-25 12:05:25
+	EndCreateTime   string      `json:"end_create_time,omitempty"`   //结束时间 2020-04-25 12:05:25
+	StartUpdateTime string      `json:"start_update_time,omitempty"` //开始时间 2020-03-25 12:05:25
+	EndUpdateTime   string      `json:"end_update_time,omitempty"`   //结束时间 2020-04-25 12:05:25
+	Page            uint64      `json:"page"`                        //页码
+	PageSize        uint64      `json:"page_size"`                   //每页个数
+	Status          OrderStatus `json:"status"`                      //订单状态
 }
 type OrderGetListResponse struct {
 	APIResponse
