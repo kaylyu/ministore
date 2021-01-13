@@ -27,7 +27,7 @@ func NewOrder(core *component.Core) *Order {
 获取订单列表
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/order/get_order_list.html
 */
-func (o *Order) GetOrderList(request *models.OrderGetListRequest) (response models.OrderGetListResponse, err error) {
+func (o *Order) GetOrderList(request *models.OrderGetListRequest) (response models.OrderGetListResponse, body string, err error) {
 	err = o.core.HttpPostJson(apiGetOrderList, request, &response)
 	return
 }
@@ -36,7 +36,7 @@ func (o *Order) GetOrderList(request *models.OrderGetListRequest) (response mode
 获取订单详情
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/order/get_order_detail.html
 */
-func (o *Order) GetOrderDetail(request *models.OrderDetailRequest) (response models.OrderDetailResponse, err error) {
+func (o *Order) GetOrderDetail(request *models.OrderDetailRequest) (response models.OrderDetailResponse, body string, err error) {
 	err = o.core.HttpPostJson(apiGetOrderDetail, request, &response)
 	return
 }
@@ -45,7 +45,7 @@ func (o *Order) GetOrderDetail(request *models.OrderDetailRequest) (response mod
 搜索订单
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/order/search_order.html
 */
-func (o *Order) GetOrderSearch(request *models.OrderSearchRequest) (response models.OrderSearchResponse, err error) {
+func (o *Order) GetOrderSearch(request *models.OrderSearchRequest) (response models.OrderSearchResponse, body string, err error) {
 	err = o.core.HttpPostJson(apiGetOrderSearch, request, &response)
 	return
 }

@@ -28,7 +28,7 @@ func TestCheckAuth(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
 	})
-	resp, err := m.GetService().CheckAuth(&models.CheckAuthRequest{
+	resp, _, err := m.GetService().CheckAuth(&models.CheckAuthRequest{
 		Code: "123",
 	})
 	fmt.Println(util.JsonEncode(resp), err)
@@ -39,7 +39,7 @@ func TestGetServiceList(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
 	})
-	resp, err := m.GetService().GetServiceList(nil)
+	resp, _, err := m.GetService().GetServiceList(nil)
 	fmt.Println(util.JsonEncode(resp), err)
 }
 
@@ -48,7 +48,7 @@ func TestGetServiceOrderList(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
 	})
-	resp, err := m.GetService().GetServiceOrderList(&models.GetServiceOrderListRequest{
+	resp, _, err := m.GetService().GetServiceOrderList(&models.GetServiceOrderListRequest{
 		StartCreateTime: " 2020-03-25 12:05:25",
 		EndCreateTime:   " 2020-04-25 12:05:25",
 		Page:            1,

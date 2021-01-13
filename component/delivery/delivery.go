@@ -26,8 +26,8 @@ func NewDelivery(core *component.Core) *Delivery {
 获取快递公司列表
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/delivery/get_delivery_company_list.html
 */
-func (d *Delivery) GetDeliveryCompanyList(request *models.DeliveryGetCompanyRequest) (response models.DeliveryGetCompanyResponse, err error) {
-	err = d.core.HttpPostJson(apiGetDeliveryCompanyList, request, &response)
+func (d *Delivery) GetDeliveryCompanyList(request *models.DeliveryGetCompanyRequest) (response models.DeliveryGetCompanyResponse, body string, err error) {
+	body, err = d.core.HttpPostJson(apiGetDeliveryCompanyList, request, &response)
 	return
 }
 
@@ -35,7 +35,7 @@ func (d *Delivery) GetDeliveryCompanyList(request *models.DeliveryGetCompanyRequ
 订单发货
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/delivery/send_delivery.html
 */
-func (d *Delivery) SendDelivery(request *models.DeliverySendRequest) (response models.DeliverySendResponse, err error) {
-	err = d.core.HttpPostJson(apiSendDelivery, request, &response)
+func (d *Delivery) SendDelivery(request *models.DeliverySendRequest) (response models.DeliverySendResponse, body string, err error) {
+	body, err = d.core.HttpPostJson(apiSendDelivery, request, &response)
 	return
 }

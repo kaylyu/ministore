@@ -42,10 +42,10 @@ func NewService(core *component.Core) *Service {
 登录验证
 See: https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/service/check_auth.html
 */
-func (p *Service) CheckAuth(request *models.CheckAuthRequest, componentAccessToken string) (response models.CheckAuthResponse, err error) {
+func (p *Service) CheckAuth(request *models.CheckAuthRequest, componentAccessToken string) (response models.CheckAuthResponse, body string, err error) {
 	//设置
 	request.SetComponentAccessToken(componentAccessToken)
-	err = p.core.HttpPostJson(apiCheckAuth, request, &response)
+	body, err = p.core.HttpPostJson(apiCheckAuth, request, &response)
 	return
 }
 
@@ -53,8 +53,8 @@ func (p *Service) CheckAuth(request *models.CheckAuthRequest, componentAccessTok
 获取用户购买的在有效期内的服务列表
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/service/get_service_list.html
 */
-func (p *Service) GetServiceList(request *models.GetListRequest) (response models.GetListResponse, err error) {
-	err = p.core.HttpPostJson(apiGetServiceList, request, &response)
+func (p *Service) GetServiceList(request *models.GetListRequest) (response models.GetListResponse, body string, err error) {
+	body, err = p.core.HttpPostJson(apiGetServiceList, request, &response)
 	return
 }
 
@@ -62,7 +62,7 @@ func (p *Service) GetServiceList(request *models.GetListRequest) (response model
 获取用户购买的服务列表
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/service/get_service_order_list.html
 */
-func (p *Service) GetServiceOrderList(request *models.GetServiceOrderListRequest) (response models.GetServiceOrderListListResponse, err error) {
-	err = p.core.HttpPostJson(apiGetServiceOrderList, request, &response)
+func (p *Service) GetServiceOrderList(request *models.GetServiceOrderListRequest) (response models.GetServiceOrderListListResponse, body string, err error) {
+	body, err = p.core.HttpPostJson(apiGetServiceOrderList, request, &response)
 	return
 }

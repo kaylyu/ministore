@@ -16,13 +16,13 @@ func NewCore(ctx *context.Context) *Core {
 }
 
 //POST
-func (c *Core) HttpPostJson(path string, request models.IAPIRequest, response interface{}, headers ...map[string]string) (err error) {
+func (c *Core) HttpPostJson(path string, request models.IAPIRequest, response interface{}, headers ...map[string]string) (body string, err error) {
 	bComponentAccessToken := len(request.GetComponentAccessToken()) != 0
 	if bComponentAccessToken {
 		c.ctx.Config.ComponentAccessToken = request.GetComponentAccessToken()
 	}
 	//附加数据
-	body, err := c.client.HttpPostJson(path, util.JsonEncode(request), bComponentAccessToken, headers...)
+	body, err = c.client.HttpPostJson(path, util.JsonEncode(request), bComponentAccessToken, headers...)
 	if err != nil {
 		return
 	}
@@ -34,8 +34,8 @@ func (c *Core) HttpPostJson(path string, request models.IAPIRequest, response in
 }
 
 //上传文件
-func (c *Core) Upload(path, filename string, response interface{}) (err error) {
-	body, err := c.client.Upload(path, filename)
+func (c *Core) Upload(path, filename string, response interface{}) (body string, err error) {
+	body, err = c.client.Upload(path, filename)
 	if err != nil {
 		return
 	}

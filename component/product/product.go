@@ -28,8 +28,8 @@ func NewProduct(core *component.Core) *Product {
 获取类目详情
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/cat/get_cat_list.html
 */
-func (p *Product) GetCategory(request *models.CategoryRequest) (response models.CategoryResponse, err error) {
-	err = p.core.HttpPostJson(apiGetCatList, request, &response)
+func (p *Product) GetCategory(request *models.CategoryRequest) (response models.CategoryResponse, body string, err error) {
+	body, err = p.core.HttpPostJson(apiGetCatList, request, &response)
 	return
 }
 
@@ -37,8 +37,8 @@ func (p *Product) GetCategory(request *models.CategoryRequest) (response models.
 获取品牌列表
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/cat/get_brand.html
 */
-func (p *Product) GetBrand(request *models.BrandRequest) (response models.BrandResponse, err error) {
-	err = p.core.HttpPostJson(apiGetBrand, request, &response)
+func (p *Product) GetBrand(request *models.BrandRequest) (response models.BrandResponse, body string, err error) {
+	body, err = p.core.HttpPostJson(apiGetBrand, request, &response)
 	return
 }
 
@@ -46,8 +46,8 @@ func (p *Product) GetBrand(request *models.BrandRequest) (response models.BrandR
 获取运费模板
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/cat/get_freight_template.html
 */
-func (p *Product) GetFreightTemplate(request *models.FreightTemplateRequest) (response models.FreightTemplateResponse, err error) {
-	err = p.core.HttpPostJson(apiGetFreightTemplate, request, &response)
+func (p *Product) GetFreightTemplate(request *models.FreightTemplateRequest) (response models.FreightTemplateResponse, body string, err error) {
+	body, err = p.core.HttpPostJson(apiGetFreightTemplate, request, &response)
 	return
 }
 
@@ -55,7 +55,7 @@ func (p *Product) GetFreightTemplate(request *models.FreightTemplateRequest) (re
 获取店铺的商品分类
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/store/get_shopcat.html
 */
-func (p *Product) GetCats(request *models.ShopCatRequest) (response models.ShopCatResponse, err error) {
-	err = p.core.HttpPostJson(apiGetShopCat, request, &response)
+func (p *Product) GetCats(request *models.ShopCatRequest) (response models.ShopCatResponse, body string, err error) {
+	body, err = p.core.HttpPostJson(apiGetShopCat, request, &response)
 	return
 }

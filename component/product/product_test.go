@@ -28,7 +28,7 @@ func TestGetCatList(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
 	})
-	resp, err := m.GetProduct().GetCatList(&models.CategoryRequest{
+	resp, _, err := m.GetProduct().GetCategory(&models.CategoryRequest{
 		FCatId: 0,
 	})
 	fmt.Println(util.JsonEncode(resp), err)
@@ -39,7 +39,7 @@ func TestGetBrandList(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
 	})
-	resp, err := m.GetProduct().GetBrand(nil)
+	resp, _, err := m.GetProduct().GetBrand(nil)
 	fmt.Println(util.JsonEncode(resp), err)
 }
 
@@ -48,7 +48,7 @@ func TestGetFreightTemplate(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
 	})
-	resp, err := m.GetProduct().GetFreightTemplate(nil)
+	resp, _, err := m.GetProduct().GetFreightTemplate(nil)
 	fmt.Println(util.JsonEncode(resp), err)
 }
 
@@ -57,6 +57,6 @@ func TestGetCats(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
 	})
-	resp, err := m.GetProduct().GetCats(nil)
+	resp, _, err := m.GetProduct().GetCats(nil)
 	fmt.Println(util.JsonEncode(resp), err)
 }

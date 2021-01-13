@@ -32,8 +32,8 @@ func NewSpu(core *component.Core) *Spu {
 添加商品
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/spu/add_spu.html
 */
-func (s *Spu) AddSpu(request *models.SpuAddRequest) (response models.SpuAddResponse, err error) {
-	err = s.core.HttpPostJson(apiAddSpu, request, &response)
+func (s *Spu) AddSpu(request *models.SpuAddRequest) (response models.SpuAddResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiAddSpu, request, &response)
 	return
 }
 
@@ -41,8 +41,8 @@ func (s *Spu) AddSpu(request *models.SpuAddRequest) (response models.SpuAddRespo
 删除商品
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/spu/del_spu.html
 */
-func (s *Spu) DelSpu(request *models.SpuDelRequest) (response models.SpuDelResponse, err error) {
-	err = s.core.HttpPostJson(apiDelSpu, request, &response)
+func (s *Spu) DelSpu(request *models.SpuDelRequest) (response models.SpuDelResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiDelSpu, request, &response)
 	return
 }
 
@@ -50,8 +50,8 @@ func (s *Spu) DelSpu(request *models.SpuDelRequest) (response models.SpuDelRespo
 获取商品
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/spu/get_spu.html
 */
-func (s *Spu) GetSpu(request *models.SpuGetRequest) (response models.SpuGetResponse, err error) {
-	err = s.core.HttpPostJson(apiGetSpu, request, &response)
+func (s *Spu) GetSpu(request *models.SpuGetRequest) (response models.SpuGetResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiGetSpu, request, &response)
 	return
 }
 
@@ -59,8 +59,8 @@ func (s *Spu) GetSpu(request *models.SpuGetRequest) (response models.SpuGetRespo
 获取商品列表
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/spu/get_spu_list.html
 */
-func (s *Spu) GetSpuList(request *models.SpuGetListRequest) (response models.SpuGetListResponse, err error) {
-	err = s.core.HttpPostJson(apiGetSpuList, request, &response)
+func (s *Spu) GetSpuList(request *models.SpuGetListRequest) (response models.SpuGetListResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiGetSpuList, request, &response)
 	return
 }
 
@@ -68,8 +68,8 @@ func (s *Spu) GetSpuList(request *models.SpuGetListRequest) (response models.Spu
 搜索商品
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/spu/search_spu.html
 */
-func (s *Spu) SearchSpu(request *models.SpuSearchRequest) (response models.SpuSearchResponse, err error) {
-	err = s.core.HttpPostJson(apiSearchSpuList, request, &response)
+func (s *Spu) SearchSpu(request *models.SpuSearchRequest) (response models.SpuSearchResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiSearchSpuList, request, &response)
 	return
 }
 
@@ -77,8 +77,8 @@ func (s *Spu) SearchSpu(request *models.SpuSearchRequest) (response models.SpuSe
 更新商品
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/spu/up_spu.html
 */
-func (s *Spu) UpdateSpu(request *models.SpuUpdateRequest) (response models.SpuUpdateResponse, err error) {
-	err = s.core.HttpPostJson(apiUpdateSpu, request, &response)
+func (s *Spu) UpdateSpu(request *models.SpuUpdateRequest) (response models.SpuUpdateResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiUpdateSpu, request, &response)
 	return
 }
 
@@ -86,8 +86,8 @@ func (s *Spu) UpdateSpu(request *models.SpuUpdateRequest) (response models.SpuUp
 上架商品
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/spu/up_spu_listing.html
 */
-func (s *Spu) UpSpu(request *models.SpuUpRequest) (response models.SpuUpResponse, err error) {
-	err = s.core.HttpPostJson(apiUpSpuListing, request, &response)
+func (s *Spu) UpSpu(request *models.SpuUpRequest) (response models.SpuUpResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiUpSpuListing, request, &response)
 	return
 }
 
@@ -95,7 +95,7 @@ func (s *Spu) UpSpu(request *models.SpuUpRequest) (response models.SpuUpResponse
 下架商品
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/spu/up_spu_delisting.html
 */
-func (s *Spu) DownSpu(request *models.SpuDownRequest) (response models.SpuDownResponse, err error) {
-	err = s.core.HttpPostJson(apiUpSpuDelisting, request, &response)
+func (s *Spu) DownSpu(request *models.SpuDownRequest) (response models.SpuDownResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiUpSpuDelisting, request, &response)
 	return
 }

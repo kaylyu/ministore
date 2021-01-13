@@ -31,8 +31,8 @@ func NewStore(core *component.Core) *Store {
 获取基本信息
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/store/get_store_info.html
 */
-func (s *Store) GetStoreInfo(request *models.StoreGetInfoRequest) (response models.StoreGetInfoResponse, err error) {
-	err = s.core.HttpPostJson(apiGetStoreInfo, request, &response)
+func (s *Store) GetStoreInfo(request *models.StoreGetInfoRequest) (response models.StoreGetInfoResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiGetStoreInfo, request, &response)
 	return
 }
 
@@ -40,8 +40,8 @@ func (s *Store) GetStoreInfo(request *models.StoreGetInfoRequest) (response mode
 上传图片
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/register/uploadimg.html
 */
-func (s *Store) ImgUpload(request *models.StoreImgUploadRequest) (response models.StoreImgUploadResponse, err error) {
-	err = s.core.Upload(fmt.Sprintf("%s?&height=%d&width=%d", apiImgUpload, request.Height, request.Width), request.Media, &response)
+func (s *Store) ImgUpload(request *models.StoreImgUploadRequest) (response models.StoreImgUploadResponse, body string, err error) {
+	body, err = s.core.Upload(fmt.Sprintf("%s?&height=%d&width=%d", apiImgUpload, request.Height, request.Width), request.Media, &response)
 	return
 }
 
@@ -49,8 +49,8 @@ func (s *Store) ImgUpload(request *models.StoreImgUploadRequest) (response model
 异步状态查询
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/register/check_audit_status.html
 */
-func (s *Store) RegisterCheckAuditStatus(request *models.StoreRegisterCheckAuditStatusRequest) (response models.StoreRegisterCheckAuditStatusResponse, err error) {
-	err = s.core.HttpPostJson(apiRegisterCheckAuditStatus, request, &response)
+func (s *Store) RegisterCheckAuditStatus(request *models.StoreRegisterCheckAuditStatusRequest) (response models.StoreRegisterCheckAuditStatusResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiRegisterCheckAuditStatus, request, &response)
 	return
 }
 
@@ -58,10 +58,10 @@ func (s *Store) RegisterCheckAuditStatus(request *models.StoreRegisterCheckAudit
 注册小商店账号
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/register/register_shop.html
 */
-func (s *Store) StoreRegister(request *models.StoreRegisterRequest, componentAccessToken string) (response models.StoreRegisterResponse, err error) {
+func (s *Store) StoreRegister(request *models.StoreRegisterRequest, componentAccessToken string) (response models.StoreRegisterResponse, body string, err error) {
 	//设置
 	request.SetComponentAccessToken(componentAccessToken)
-	err = s.core.HttpPostJson(apiRegisterShop, request, &response)
+	body, err = s.core.HttpPostJson(apiRegisterShop, request, &response)
 	return
 }
 
@@ -69,8 +69,8 @@ func (s *Store) StoreRegister(request *models.StoreRegisterRequest, componentAcc
 提交支付资质
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/register/submit_merchantinfo.html
 */
-func (s *Store) StoreRegisterSubmitMerchantInfo(request *models.StoreRegisterSubmitMerchantInfoRequest) (response models.StoreRegisterSubmitMerchantInfoResponse, err error) {
-	err = s.core.HttpPostJson(apiRegisterSubmitMerchantInfo, request, &response)
+func (s *Store) StoreRegisterSubmitMerchantInfo(request *models.StoreRegisterSubmitMerchantInfoRequest) (response models.StoreRegisterSubmitMerchantInfoResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiRegisterSubmitMerchantInfo, request, &response)
 	return
 }
 
@@ -78,7 +78,7 @@ func (s *Store) StoreRegisterSubmitMerchantInfo(request *models.StoreRegisterSub
 提交小商店基础信息
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/register/submit_basicinfo.html
 */
-func (s *Store) StoreRegisterSubmitBasicInfo(request *models.StoreRegisterSubmitBasicInfoRequest) (response models.StoreRegisterSubmitBasicInfoResponse, err error) {
-	err = s.core.HttpPostJson(apiRegisterSubmitBasicInfo, request, &response)
+func (s *Store) StoreRegisterSubmitBasicInfo(request *models.StoreRegisterSubmitBasicInfoRequest) (response models.StoreRegisterSubmitBasicInfoResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiRegisterSubmitBasicInfo, request, &response)
 	return
 }

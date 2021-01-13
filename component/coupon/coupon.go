@@ -27,8 +27,8 @@ func NewCoupon(core *component.Core) *Coupon {
 创建优惠券
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/coupon/create_coupon.html
 */
-func (c *Coupon) CreateCoupon(request *models.CouponCreateRequest) (response models.CouponCreateResponse, err error) {
-	err = c.core.HttpPostJson(apiCreateCoupon, request, &response)
+func (c *Coupon) CreateCoupon(request *models.CouponCreateRequest) (response models.CouponCreateResponse, body string, err error) {
+	body, err = c.core.HttpPostJson(apiCreateCoupon, request, &response)
 	return
 }
 
@@ -36,8 +36,8 @@ func (c *Coupon) CreateCoupon(request *models.CouponCreateRequest) (response mod
 获取优惠券列表
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/coupon/get_coupon.html
 */
-func (c *Coupon) GetCouponList(request *models.CouponGetListRequest) (response models.CouponGetListResponse, err error) {
-	err = c.core.HttpPostJson(apiGetCoupon, request, &response)
+func (c *Coupon) GetCouponList(request *models.CouponGetListRequest) (response models.CouponGetListResponse, body string, err error) {
+	body, err = c.core.HttpPostJson(apiGetCoupon, request, &response)
 	return
 }
 
@@ -45,7 +45,7 @@ func (c *Coupon) GetCouponList(request *models.CouponGetListRequest) (response m
 发放优惠券
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/coupon/push_coupon.html
 */
-func (c *Coupon) PushCoupon(request *models.CouponPusRequest) (response models.CouponPusResponse, err error) {
-	err = c.core.HttpPostJson(apiGetCoupon, request, &response)
+func (c *Coupon) PushCoupon(request *models.CouponPusRequest) (response models.CouponPusResponse, body string, err error) {
+	body, err = c.core.HttpPostJson(apiGetCoupon, request, &response)
 	return
 }

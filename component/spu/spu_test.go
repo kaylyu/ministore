@@ -28,7 +28,7 @@ func TestGetSpuList(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_R2De-VYJKpTnEN42Z83neFP8Kmav9ARQ2liHZ2eUBEvSxmqIlh5z4IhQUYgPc0Zt-pXzciYeN381GRfcwr53zZRZJSZzF645HZV98ryPegGNR7w-uQNBM7ZgrOLOxLMRXG3LNq1JNe0j2n6_LFBaAKDGAW",
 	})
-	resp, err := m.GetSpu().GetSpuList(&models.SpuGetListRequest{
+	resp, _, err := m.GetSpu().GetSpuList(&models.SpuGetListRequest{
 		NeedEditSpu: models.NeedEditSpuDraft,
 		Status:      models.SpuStatusPutaway,
 		Page:        1,
@@ -42,7 +42,7 @@ func TestSearchSpu(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_R2De-VYJKpTnEN42Z83neFP8Kmav9ARQ2liHZ2eUBEvSxmqIlh5z4IhQUYgPc0Zt-pXzciYeN381GRfcwr53zZRZJSZzF645HZV98ryPegGNR7w-uQNBM7ZgrOLOxLMRXG3LNq1JNe0j2n6_LFBaAKDGAW",
 	})
-	resp, err := m.GetSpu().SearchSpu(&models.SpuSearchRequest{
+	resp, _, err := m.GetSpu().SearchSpu(&models.SpuSearchRequest{
 		NeedEditSpu: models.NeedEditSpuDraft,
 		Status:      models.SpuStatusPutaway,
 		Page:        1,
@@ -57,7 +57,7 @@ func TestUpSpu(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
 	})
-	resp, err := m.GetSpu().UpSpu(&models.SpuUpRequest{
+	resp, _, err := m.GetSpu().UpSpu(&models.SpuUpRequest{
 		ProductId: 7516256,
 	})
 	fmt.Println(util.JsonEncode(resp), err)
@@ -68,7 +68,7 @@ func TestDownSpu(t *testing.T) {
 		LogPrefix:   "ministore",
 		AccessToken: "40_8DHWqetYL-mSUlViAfIkmhvmqwhX94wSjBfpUlBnG3aqpb1-3jHZrW924Psgk7WTpTjqqTapq4BGXXfElVdMNLc6iwoyevPA2w-pXAZQAj85F48X4CiGm9Fg-SskNTNXcjVUi3kWua5EdwbBVBYgAMDEKH",
 	})
-	resp, err := m.GetSpu().DownSpu(&models.SpuDownRequest{
+	resp, _, err := m.GetSpu().DownSpu(&models.SpuDownRequest{
 		ProductId: 7516256,
 	})
 	fmt.Println(util.JsonEncode(resp), err)

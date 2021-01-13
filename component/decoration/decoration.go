@@ -26,8 +26,8 @@ func NewDecoration(core *component.Core) *Decoration {
 启用或停用装修
 https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/Mini_Programs/value_added_services/decoration.html
 */
-func (d *Decoration) DecorationSwitch(request *models.DecorationSwitchRequest) (response models.DecorationSwitchResponse, err error) {
-	err = d.core.HttpPostJson(apiSwitch, request, &response)
+func (d *Decoration) DecorationSwitch(request *models.DecorationSwitchRequest) (response models.DecorationSwitchResponse, body string, err error) {
+	body, err = d.core.HttpPostJson(apiSwitch, request, &response)
 	return
 }
 
@@ -35,7 +35,7 @@ func (d *Decoration) DecorationSwitch(request *models.DecorationSwitchRequest) (
 部署体验版
 https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/Mini_Programs/value_added_services/decoration.html
 */
-func (d *Decoration) DecorationExperience(request *models.DecorationExperienceRequest) (response models.DecorationExperienceResponse, err error) {
-	err = d.core.HttpPostJson(apiExperience, request, &response)
+func (d *Decoration) DecorationExperience(request *models.DecorationExperienceRequest) (response models.DecorationExperienceResponse, body string, err error) {
+	body, err = d.core.HttpPostJson(apiExperience, request, &response)
 	return
 }

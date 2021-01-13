@@ -20,7 +20,6 @@ type OrderGetListResponse struct {
 type OrderData struct {
 	OrderId         uint64           `json:"order_id"`    //订单ID
 	Openid          string           `json:"openid"`      //用户的openid，用于物流助手接口
-	TotalNum        string           `json:"total_num"`   //订单总数
 	CreateTime      string           `json:"create_time"` //创建时间
 	UpdateTime      string           `json:"update_time"` //更新时间
 	OrderDetail     *OrderDetail     `json:"order_detail"`
@@ -62,16 +61,28 @@ type PriceInfo struct {
 }
 type DeliveryInfo struct {
 	DeliveryMethod      string                 `json:"delivery_method"` //快递方式（目前只有"快递"）
-	DeliveryTime        string                 `json:"delivery_time"`   //发货时间
+	DeliverType         string                 `json:"deliver_type"`    //物流类型
 	DeliveryProductInfo []*DeliveryProductInfo `json:"delivery_product_info"`
 	DeliveryAddressInfo *DeliveryAddressInfo   `json:"address_info"`
 	ExpressFee          []*ExpressFee          `json:"express_fee"`
 	InsuranceInfo       *InsuranceInfo         `json:"insurance_info"`
 }
 type DeliveryProductInfo struct {
-	WaybillId  string `json:"waybill_id"`  //快递单号
-	DeliveryId string `json:"delivery_id"` //快递公司编号
+	WaybillId    string                  `json:"waybill_id"`    //快递单号
+	DeliveryId   string                  `json:"delivery_id"`   //快递公司编号
+	ProductInfos []*DeliveryProductInfos `json:"product_infos"` //物流产品信息
+	IsAllProduct bool                    `json:"is_all_product"`
+	DeliveryName string                  `json:"delivery_name"` //物流名称
+	DeliveryTime uint64                  `json:"delivery_time"` //发货时间
 }
+
+//
+type DeliveryProductInfos struct {
+	ProductId  uint64 `json:"product_id"`  //小商店内部商品ID
+	SkuId      uint64 `json:"sku_id"`      //小商店内部skuID
+	ProductCnt uint64 `json:"product_cnt"` //产品数量
+}
+
 type DeliveryAddressInfo struct {
 	UserName     string `json:"user_name"`     //收货人姓名
 	PostalCode   string `json:"postal_code"`   //邮编
