@@ -38,11 +38,11 @@ func TestGetCouponList(t *testing.T) {
 		AccessToken: "40_xKoMXQzhVQhEwBpZzqYt5UuPli1Zroc5zdd3LU8BK6cuWj_6IDDuswCaAzNfwD5OhQmWiU_VzyJBsNBP-66OshVzXVm4UsrV1-BHcfsaxzj0wp_9Q4FwT5vfL174Ns2LfKZ7zTgGZ1XcQcKYCDOgAKDKLW",
 	})
 	resp, _, err := m.GetCoupon().GetCouponList(&models.CouponGetListRequest{
-		StartCrateTime: "2020-12-20 12:05:25",
-		EndCreateTime:  "2021-2-25 12:05:25",
-		Page:           1,
-		PageSize:       10,
-		Status:         models.CouponStatusValid,
+		StartCreateTime: "2020-12-20 12:05:25",
+		EndCreateTime:   "2021-2-25 12:05:25",
+		Page:            1,
+		PageSize:        10,
+		Status:          models.CouponStatusValid,
 	})
 	fmt.Println(util.JsonEncode(resp), err)
 }

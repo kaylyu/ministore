@@ -68,11 +68,11 @@ type CouponCreateData struct {
 //获取优惠券列表
 type CouponGetListRequest struct {
 	APIRequest
-	StartCrateTime string       `json:"start_crate_time"` //开始时间 2020-03-25 12:05:25
-	EndCreateTime  string       `json:"end_create_time"`  ////结束时间 2020-04-25 12:05:25
-	Page           uint64       `json:"page"`             //页码
-	PageSize       uint64       `json:"page_size"`        //每页个数
-	Status         CouponStatus `json:"status,omitempty"` //优惠券状态
+	StartCreateTime string       `json:"start_create_time"` //开始时间 2020-03-25 12:05:25
+	EndCreateTime   string       `json:"end_create_time"`   ////结束时间 2020-04-25 12:05:25
+	Page            uint64       `json:"page"`              //页码
+	PageSize        uint64       `json:"page_size"`         //每页个数
+	Status          CouponStatus `json:"status,omitempty"`  //优惠券状态
 }
 type CouponGetListResponse struct {
 	APIResponse
