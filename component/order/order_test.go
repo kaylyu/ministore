@@ -12,16 +12,30 @@ import (
 func TestGetOrderList(t *testing.T) {
 	m := ministore.New(&config.Config{
 		LogPrefix:   "ministore",
-		AccessToken: "41_gaLbN9dhFEcuv-Wjpe31zXGQk893IfAr7sey0kHT_p0MoUPBYvq5---hs4GCVm_UycXx0XSKyamSLXLppfqtwnh4cQGAopjDvEZd1-Kpv2sw2JmQS3rcdc_7RkyTLHX0lEmCzvv8C4kI7OZ7LCIaADDXOU",
+		AccessToken: "41_LG-HTeNNdno_pfzF8UZ8XXdywpvmgHHF3neRzsx8lH54J2WYSjS8Z6Mm-vx3X8cB3vpalMlOT_Zv6SgL8nIjJ6j38BmymopIxMyAbFdDUA-Tgz-xKYz5aSnx66e0WZ-o0oca96-sGYMgAKDPHV",
 	})
-	resp, _, err := m.GetOrder().GetOrderList(&models.OrderGetListRequest{
-		StartUpdateTime: "2020-12-22 14:40:43",
-		EndUpdateTime:   "2021-01-13 17:43:43",
-		Page:            1,
-		PageSize:        10,
-		Status:          models.OrderStatusComplete,
-	})
-	fmt.Println(util.JsonEncode(resp), err)
+	keys := map[models.OrderStatus]interface{}{
+		10:  "待付款",
+		20:  "待发货",
+		30:  "待收货",
+		100: "完成",
+		200: "全部商品售后之后，订单取消",
+		250: "用户主动取消或待付款超时取消",
+	}
+	fmt.Println("小店名称：", "xxx")
+	st := "2021-01-19 00:00:00"
+	et := "2021-02-13 17:43:43"
+	fmt.Printf("搜索时间：%s----%s\n", st, et)
+	for _, item := range []models.OrderStatus{models.OrderStatusUnpaid, models.OrderStatusSendPending, models.OrderStatusReceivePending, models.OrderStatusComplete, models.OrderStatusCompleteCancel, models.OrderStatusTimeoutCancel} {
+		resp, _, _ := m.GetOrder().GetOrderList(&models.OrderGetListRequest{
+			StartUpdateTime: st,
+			EndUpdateTime:   et,
+			Page:            1,
+			PageSize:        10,
+			Status:          item,
+		})
+		fmt.Printf("%s:%d单\n", keys[item], resp.TotalNum)
+	}
 }
 
 func TestGetOrderDetail(t *testing.T) {
