@@ -30,6 +30,6 @@ func (req *APIRequest) GetComponentAccessToken() string {
 //返回码
 // https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/return/errcode.html
 type APIResponse struct {
-	Errcode uint   `json:"errcode"`
+	Errcode int64  `json:"errcode"`
 	Errmsg  string `json:"errmsg"`
 }
