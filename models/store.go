@@ -47,7 +47,7 @@ type StoreRegisterCheckAuditStatusData struct {
 	PaySignStatus      StoreStatus         `json:"pay_sign_status"`      //支付签约状态, 具体含义查看状态枚举值
 	AuditRejectReasons string              `json:"audit_reject_reasons"` //基础信息驳回原因
 	LegalValidationUrl string              `json:"legal_validation_url"` //法人验证链接
-	PayAuditDetail     *PayAuditDetail     `json:"pay_audit_detail"`
+	PayAuditDetail     []*PayAuditDetail   `json:"pay_audit_detail"`
 	RegisteredAppid    string              `json:"registered_appid"` //注册的appid
 }
 type PayAuditDetail struct {
