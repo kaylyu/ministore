@@ -21,6 +21,7 @@ func (c *Core) HttpPostJson(path string, request models.IAPIRequest, response in
 	if bComponentAccessToken {
 		c.ctx.Config.ComponentAccessToken = request.GetComponentAccessToken()
 	}
+	c.ctx.Config.AccessToken = request.GetAccessToken()
 	//附加数据
 	body, err = c.client.HttpPostJson(path, util.JsonEncode(request), bComponentAccessToken, headers...)
 	if err != nil {
