@@ -58,11 +58,12 @@ type PayAuditDetail struct {
 //注册小商店账号
 type StoreRegisterRequest struct {
 	APIRequest
-	WxName           string                        `json:"wx_name"`            //微信号
-	IdCardName       string                        `json:"id_card_name"`       //身份证姓名
-	IdCardNumber     string                        `json:"id_card_number"`     //身份证号
-	ChannelId        string                        `json:"channel_id"`         //	渠道号
-	ApiOpenstoreType StoreRegisterApiOpenStoreType `json:"api_openstore_type"` //1-整店打包，2-组件开放
+	WxName           string                        `json:"wx_name"`                 //微信号
+	IdCardName       string                        `json:"id_card_name"`            //身份证姓名
+	IdCardNumber     string                        `json:"id_card_number"`          //身份证号
+	ChannelId        string                        `json:"channel_id,omitempty"`    //	渠道号
+	ApiOpenstoreType StoreRegisterApiOpenStoreType `json:"api_openstore_type"`      //1-整店打包，2-组件开放
+	AuthPageUrl      string                        `json:"auth_page_url,omitempty"` //授权页url
 }
 type StoreRegisterResponse struct {
 	APIResponse
@@ -154,7 +155,7 @@ type AddressInfo struct {
 	ProvinceName string `json:"province_name"`           //省份，格式：广东省 北京市
 	CityName     string `json:"city_name"`               //城市，格式：广州市
 	CountryName  string `json:"country_name"`            //区，格式：海珠区
-	DetailInfo   string `json:"detail_info"`             //详细地址
+	DetailInfo   string `json:"detail_info,omitempty"`   //详细地址
 	NationalCode uint64 `json:"national_code,omitempty"` //国家码
 	TelNumber    string `json:"tel_number"`              //电话号
 }
