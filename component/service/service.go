@@ -44,7 +44,7 @@ See: https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/se
 */
 func (p *Service) CheckAuth(request *models.CheckAuthRequest, componentAccessToken string) (response models.CheckAuthResponse, body string, err error) {
 	//设置
-	request.SetComponentAccessToken(componentAccessToken)
+	p.core.Config.ComponentAccessToken = componentAccessToken
 	body, err = p.core.HttpPostJson(apiCheckAuth, request, &response)
 	return
 }

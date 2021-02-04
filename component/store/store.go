@@ -50,15 +50,18 @@ func (s *Store) ImgUpload(request *models.StoreImgUploadRequest) (response model
 https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/register/check_audit_status.html
 */
 func (s *Store) RegisterCheckAuditStatus(request *models.StoreRegisterCheckAuditStatusRequest, componentAccessToken ...string) (response models.StoreRegisterCheckAuditStatusResponse, body string, err error) {
-	//记录
-	accessToken := request.GetAccessToken()
 	//当调用完注册接口，查询注册好的appid时，使用component access token。当查询到appid后，需要需要查询审核状态以及调用其它接口时，使用authorizer access token
-	if len(componentAccessToken) > 0 && len(componentAccessToken[0]) > 0 {
-		request.SetAccessToken(componentAccessToken[0])
+	if len(s.core.Config.AccessToken) == 0 && len(componentAccessToken) > 0 && len(componentAccessToken[0]) > 0 {
+		//记录
+		accessToken := s.core.Config.AccessToken
+		s.core.Config.AccessToken = componentAccessToken[0]
+		body, err = s.core.HttpPostJson(apiRegisterCheckAuditStatus, request, &response)
+		//执行完毕后还原access token
+		s.core.Config.AccessToken = accessToken
+	} else {
+		body, err = s.core.HttpPostJson(apiRegisterCheckAuditStatus, request, &response)
 	}
-	body, err = s.core.HttpPostJson(apiRegisterCheckAuditStatus, request, &response)
-	//执行完毕后还原access token
-	request.SetAccessToken(accessToken)
+
 	return
 }
 
@@ -68,7 +71,7 @@ https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/registe
 */
 func (s *Store) StoreRegister(request *models.StoreRegisterRequest, componentAccessToken string) (response models.StoreRegisterResponse, body string, err error) {
 	//设置
-	request.SetComponentAccessToken(componentAccessToken)
+	s.core.Config.ComponentAccessToken = componentAccessToken
 	body, err = s.core.HttpPostJson(apiRegisterShop, request, &response)
 	return
 }

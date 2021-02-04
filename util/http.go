@@ -15,7 +15,7 @@ var WxServerUrl = "https://api.weixin.qq.com"
 
 //
 type Client struct {
-	ctx *context.Context
+	*context.Context
 }
 
 //获取实例
@@ -24,10 +24,10 @@ func NewHttpClient(ctx *context.Context) (client *Client) {
 }
 
 //请求
-func (c *Client) request(method string, reqUrl string, bComponentAccessToken bool, reqBody string, headers ...map[string]string) (body string, err error) {
+func (c *Client) request(method string, reqUrl string, reqBody string, headers ...map[string]string) (body string, err error) {
 	//判断使用的token
 	var uri string
-	if bComponentAccessToken {
+	if len(c.Config.ComponentAccessToken) > 0 {
 		uri, err = c.applyComponentAccessToken(reqUrl)
 	} else {
 		uri, err = c.applyAccessToken(reqUrl)
@@ -35,12 +35,12 @@ func (c *Client) request(method string, reqUrl string, bComponentAccessToken boo
 	if err != nil {
 		return
 	}
-	if c.ctx.Logger != nil {
-		c.ctx.Logger.Printf("POST %s, reqBody:%s", uri, reqBody)
+	if c.Logger != nil {
+		c.Logger.Printf("POST %s, reqBody:%s", uri, reqBody)
 	}
 
 	//默认超时10S
-	timeout := c.ctx.Config.Timeout
+	timeout := c.Config.Timeout
 	if timeout == 0 {
 		timeout = time.Duration(10) * time.Second
 	}
@@ -62,9 +62,9 @@ func (c *Client) request(method string, reqUrl string, bComponentAccessToken boo
 }
 
 //POST
-func (c *Client) HttpPostJson(path string, params string, bComponentAccessToken bool, headers ...map[string]string) (body string, err error) {
+func (c *Client) HttpPostJson(path string, params string, headers ...map[string]string) (body string, err error) {
 	//请求
-	body, err = c.request("POST", path, bComponentAccessToken, params, headers...)
+	body, err = c.request("POST", path, params, headers...)
 
 	return
 }
@@ -76,7 +76,7 @@ func (c *Client) Upload(path, filename string) (body string, err error) {
 		return
 	}
 	//上传文件
-	rsp, err := ghttp.Post(WxServerUrl+uri, "media=@file:"+filename)
+	rsp, err := ghttp.NewClient().Post(WxServerUrl+uri, "media=@file:"+filename)
 	if err != nil {
 		return
 	}
@@ -94,7 +94,7 @@ func (c *Client) Upload(path, filename string) (body string, err error) {
 在请求地址上附加上 access_token
 */
 func (c *Client) applyAccessToken(oldUrl string) (newUrl string, err error) {
-	accessToken := c.ctx.Config.AccessToken
+	accessToken := c.Config.AccessToken
 	if strings.Contains(oldUrl, "?") {
 		newUrl = oldUrl + "&access_token=" + accessToken
 	} else {
@@ -107,7 +107,7 @@ func (c *Client) applyAccessToken(oldUrl string) (newUrl string, err error) {
 在请求地址上附加上 component_access_token
 */
 func (c *Client) applyComponentAccessToken(oldUrl string) (newUrl string, err error) {
-	componentAccessToken := c.ctx.Config.ComponentAccessToken
+	componentAccessToken := c.Config.ComponentAccessToken
 	if strings.Contains(oldUrl, "?") {
 		newUrl = oldUrl + "&component_access_token=" + componentAccessToken
 	} else {

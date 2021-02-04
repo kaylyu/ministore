@@ -7,7 +7,7 @@ import (
 )
 
 type Core struct {
-	ctx    *context.Context
+	*context.Context
 	client *util.Client
 }
 
@@ -17,20 +17,13 @@ func NewCore(ctx *context.Context) *Core {
 
 //POST
 func (c *Core) HttpPostJson(path string, request models.IAPIRequest, response interface{}, headers ...map[string]string) (body string, err error) {
-	bComponentAccessToken := len(request.GetComponentAccessToken()) != 0
-	if bComponentAccessToken {
-		c.ctx.Config.ComponentAccessToken = request.GetComponentAccessToken()
-	}
-	if len(request.GetAccessToken()) > 0 {
-		c.ctx.Config.AccessToken = request.GetAccessToken()
-	}
 	//附加数据
-	body, err = c.client.HttpPostJson(path, util.JsonEncode(request), bComponentAccessToken, headers...)
+	body, err = c.client.HttpPostJson(path, util.JsonEncode(request), headers...)
 	if err != nil {
 		return
 	}
-	if c.ctx.Logger != nil {
-		c.ctx.Logger.Debug("body", body)
+	if c.Logger != nil {
+		c.Logger.Debug("body", body)
 	}
 	err = util.JsonDecode(body, response)
 	return
@@ -42,8 +35,8 @@ func (c *Core) Upload(path, filename string, response interface{}) (body string,
 	if err != nil {
 		return
 	}
-	if c.ctx.Logger != nil {
-		c.ctx.Logger.Debug("body", body)
+	if c.Logger != nil {
+		c.Logger.Debug("body", body)
 	}
 	err = util.JsonDecode(body, response)
 	return
