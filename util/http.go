@@ -45,7 +45,7 @@ func (c *Client) request(method string, reqUrl string, bComponentAccessToken boo
 		timeout = time.Duration(10) * time.Second
 	}
 	req := ghttp.NewClient()
-	req.SetTimeOut(timeout)
+	req.Timeout(timeout)
 
 	req.SetHeader("Accept", "*/*")
 	req.SetHeader("Accept-Charset", "utf-8;")
