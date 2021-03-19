@@ -6,8 +6,9 @@ import (
 )
 
 const (
-	apiSwitch     = "/product/decoration/decoration_service"
-	apiExperience = "/product/decoration/decoration_service_experience"
+	apiSwitch      = "/product/decoration/decoration_service"
+	apiExperience  = "/product/decoration/decoration_service_experience"
+	apiCheckStatus = "/product/decoration/wxaproduct_decoration_check_status"
 )
 
 //装修
@@ -37,5 +38,14 @@ https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/Mini_Progra
 */
 func (d *Decoration) DecorationExperience(request *models.DecorationExperienceRequest) (response models.DecorationExperienceResponse, body string, err error) {
 	body, err = d.core.HttpPostJson(apiExperience, request, &response)
+	return
+}
+
+/*
+检查装修服务使用状态
+https://developers.weixin.qq.com/miniprogram/dev/framework/ministore/minishopopencomponent/API/service/decoration/decoration_check_status.html
+*/
+func (d *Decoration) DecorationCheckStatus(request *models.DecorationCheckStatusRequest) (response models.DecorationCheckStatusResponse, body string, err error) {
+	body, err = d.core.HttpPostJson(apiCheckStatus, request, &response)
 	return
 }

@@ -17,3 +17,13 @@ type DecorationExperienceRequest struct {
 type DecorationExperienceResponse struct {
 	APIResponse
 }
+
+//检查装修服务使用状态
+type DecorationCheckStatusRequest struct {
+	APIRequest
+	ServiceId uint64 `json:"service_id"`
+}
+type DecorationCheckStatusResponse struct {
+	APIResponse
+	Status uint64 `json:"status"` //1表示已启用，2表示未启用
+}
