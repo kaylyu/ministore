@@ -245,3 +245,53 @@ type SpuDownRequest struct {
 type SpuDownResponse struct {
 	APIResponse
 }
+
+//添加抢购任务
+type SpuLimitedDiscountRequest struct {
+	APIRequest
+	ProductId              uint64                    `json:"product_id"` //参与抢购的商品ID
+	StartTime              uint64                    `json:"start_time"` //抢购任务开始时间 秒级时间戳
+	EndTime                uint64                    `json:"end_time"`   //抢购任务结束时间 秒级时间戳 必须大于当前时间以及start_time
+	LimitedDiscountSkuList []*LimitedDiscountSkuList `json:"limited_discount_sku_list"`
+}
+type LimitedDiscountSkuList struct {
+	SkuId     uint64 `json:"sku_id"`     //参与抢购的商品ID下 不同规格的商品信息
+	SalePrice uint64 `json:"sale_price"` //SKU的抢购价格 必须小于原价
+	SaleStock uint64 `json:"sale_stock"` //参与抢购的商品库存 必须小于等于现有库存
+}
+
+type SpuLimitedDiscountResponse struct {
+	APIResponse
+	TaskId uint64 `json:"task_id"` //抢购任务ID 创建成功后返回
+}
+
+//拉取抢购任务列表
+type SpuLimitedListRequest struct {
+	APIRequest
+	Status uint64 `json:"status,omitempty"` //拉取的抢购任务状态
+}
+
+type SpuLimitedListResponse struct {
+	APIResponse
+	LimitedDiscountList []*LimitedDiscountList `json:"limited_discount_list"`
+}
+type LimitedDiscountList struct {
+	TaskId                 uint64                    `json:"task_id"`     //抢购任务ID 创建成功后返回
+	ProductId              uint64                    `json:"product_id"`  //参与抢购的商品ID
+	Status                 uint64                    `json:"status"`      //拉取的抢购任务状态
+	CreateTime             uint64                    `json:"create_time"` //抢购任务创建时间 秒级时间戳
+	StartTime              uint64                    `json:"start_time"`  //抢购任务开始时间 秒级时间戳
+	EndTime                uint64                    `json:"end_time"`    //抢购任务结束时间 秒级时间戳 必须大于当前时间以及start_time
+	LimitedDiscountSkuList []*LimitedDiscountSkuList `json:"limited_discount_sku_list"`
+}
+
+//修改抢购任务状态
+type SpuLimitedDiscountUpdateRequest struct {
+	APIRequest
+	Status uint64 `json:"status,omitempty"` //拉取的抢购任务状态
+	TaskId uint64 `json:"task_id"`          //抢购任务ID 创建成功后返回
+}
+
+type SpuLimitedDiscountUpdateResponse struct {
+	APIResponse
+}

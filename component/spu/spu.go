@@ -6,14 +6,17 @@ import (
 )
 
 const (
-	apiAddSpu         = "/product/spu/add"
-	apiDelSpu         = "/product/spu/del"
-	apiGetSpu         = "/product/spu/get"
-	apiGetSpuList     = "/product/spu/get_list"
-	apiSearchSpuList  = "/product/spu/search"
-	apiUpdateSpu      = "/product/spu/update"
-	apiUpSpuListing   = "/product/spu/listing"
-	apiUpSpuDelisting = "/product/spu/delisting"
+	apiAddSpu                      = "/product/spu/add"
+	apiDelSpu                      = "/product/spu/del"
+	apiGetSpu                      = "/product/spu/get"
+	apiGetSpuList                  = "/product/spu/get_list"
+	apiSearchSpuList               = "/product/spu/search"
+	apiUpdateSpu                   = "/product/spu/update"
+	apiUpSpuListing                = "/product/spu/listing"
+	apiUpSpuDelisting              = "/product/spu/delisting"
+	apiLimiteddiscountAdd          = "/product/limiteddiscount/add"
+	apiLimiteddiscountList         = "/product/limiteddiscount/get_list"
+	apiLimiteddiscountUpdateStatus = "/product/limiteddiscount/update_status"
 )
 
 //SPU
@@ -97,5 +100,32 @@ https://developers.weixin.qq.com/doc/ministore/minishopopencomponent/API/spu/up_
 */
 func (s *Spu) DownSpu(request *models.SpuDownRequest) (response models.SpuDownResponse, body string, err error) {
 	body, err = s.core.HttpPostJson(apiUpSpuDelisting, request, &response)
+	return
+}
+
+/*
+添加抢购任务
+https://developers.weixin.qq.com/miniprogram/dev/framework/ministore/minishopopencomponent/API/spu/add_limiteddiscount.html
+*/
+func (s *Spu) SpuLimitedDiscountAdd(request *models.SpuLimitedDiscountRequest) (response models.SpuLimitedDiscountResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiLimiteddiscountAdd, request, &response)
+	return
+}
+
+/*
+拉取抢购任务列表
+https://developers.weixin.qq.com/miniprogram/dev/framework/ministore/minishopopencomponent/API/spu/get_limiteddiscount_list.html
+*/
+func (s *Spu) SpuLimitedGetList(request *models.SpuLimitedListRequest) (response models.SpuLimitedListResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiLimiteddiscountList, request, &response)
+	return
+}
+
+/*
+修改抢购任务状态
+https://developers.weixin.qq.com/miniprogram/dev/framework/ministore/minishopopencomponent/API/spu/update_limiteddiscount_status.html
+*/
+func (s *Spu) SpuLimitedDiscountUpdate(request *models.SpuLimitedDiscountUpdateRequest) (response models.SpuLimitedDiscountUpdateResponse, body string, err error) {
+	body, err = s.core.HttpPostJson(apiLimiteddiscountUpdateStatus, request, &response)
 	return
 }

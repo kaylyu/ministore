@@ -65,6 +65,33 @@ type CouponCreateData struct {
 	CouponId uint64 `json:"coupon_id"` //优惠券ID
 }
 
+//更新优惠券
+type CouponUpdateRequest struct {
+	APIRequest
+	Type          CouponType     `json:"type"`
+	Name          string         `json:"name"`          //优惠券名称
+	DiscountInfo  *DiscountInfo  `json:"discount_info"` //商品
+	CouponExtInfo *CouponExtInfo `json:"ext_info"`      //优惠券
+	PromoteInfo   *PromoteInfo   `json:"promote_info"`  //推广
+	ReceiveInfo   *ReceiveInfo   `json:"receive_info"`  //领用
+	ValidInfo     *ValidInfo     `json:"valid_info"`    //有效
+}
+type CouponUpdateResponse struct {
+	APIResponse
+	Data *CouponCreateData `json:"data"`
+}
+
+//更新优惠券状态
+type CouponUpdateStatusRequest struct {
+	APIRequest
+	Openid   string       `json:"openid"`           //用户openid
+	CouponId uint64       `json:"coupon_id"`        //优惠券ID
+	Status   CouponStatus `json:"status,omitempty"` //优惠券状态 COUPON_STATUS_VALID = 2 ;//生效 COUPON_STATUS_INVALID = 4 ;//已作废 COUPON_STATUS_DEL = 5;//删除
+}
+type CouponUpdateStatusResponse struct {
+	APIResponse
+}
+
 //获取优惠券列表
 type CouponGetListRequest struct {
 	APIRequest
@@ -86,6 +113,16 @@ type CouponGetListData struct {
 	UpdateTime string       `json:"update_time"` //优惠券更新时间
 	CouponInfo *CouponInfo  `json:"coupon_info"` //优惠券
 	StockInfo  *StockInfo   `json:"stock_info"`  //库存
+}
+
+//获取优惠券信息
+type CouponGetRequest struct {
+	APIRequest
+	CouponId uint64 `json:"coupon_id"` //优惠券ID
+}
+type CouponGetResponse struct {
+	APIResponse
+	Data []*CouponGetListData `json:"coupons"`
 }
 
 //发放优惠券

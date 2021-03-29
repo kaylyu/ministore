@@ -26,10 +26,10 @@ import (
 func TestGetSpuList(t *testing.T) {
 	m := ministore.New(&config.Config{
 		LogPrefix:   "ministore",
-		AccessToken: "40_R2De-VYJKpTnEN42Z83neFP8Kmav9ARQ2liHZ2eUBEvSxmqIlh5z4IhQUYgPc0Zt-pXzciYeN381GRfcwr53zZRZJSZzF645HZV98ryPegGNR7w-uQNBM7ZgrOLOxLMRXG3LNq1JNe0j2n6_LFBaAKDGAW",
+		AccessToken: "43_qAxTOftN_eEqtdSoQnbuYjWDqorgys3phCVrHBl8_JPrJpFUVq6mr3vyMMSY1Hr5wecPkmfGkNRSCV--Y8_6j4dy8C1-rytrzCIxpPQOPaHmH2hIiFjE_yAr4XVYaXCKJq9t5gqPYoT4fm45GBHeAJDQLR",
 	})
 	resp, _, err := m.GetSpu().GetSpuList(&models.SpuGetListRequest{
-		NeedEditSpu: models.NeedEditSpuDraft,
+		NeedEditSpu: models.NeedEditSpuOnline,
 		Status:      models.SpuStatusPutaway,
 		Page:        1,
 		PageSize:    10,
@@ -70,6 +70,47 @@ func TestDownSpu(t *testing.T) {
 	})
 	resp, _, err := m.GetSpu().DownSpu(&models.SpuDownRequest{
 		ProductId: 7516256,
+	})
+	fmt.Println(util.JsonEncode(resp), err)
+}
+
+func TestSpuLimitedDiscountAdd(t *testing.T) {
+	m := ministore.New(&config.Config{
+		LogPrefix:   "ministore",
+		AccessToken: "43_qAxTOftN_eEqtdSoQnbuYjWDqorgys3phCVrHBl8_JPrJpFUVq6mr3vyMMSY1Hr5wecPkmfGkNRSCV--Y8_6j4dy8C1-rytrzCIxpPQOPaHmH2hIiFjE_yAr4XVYaXCKJq9t5gqPYoT4fm45GBHeAJDQLR",
+	})
+	resp, _, err := m.GetSpu().SpuLimitedDiscountAdd(&models.SpuLimitedDiscountRequest{
+		ProductId: 16037732,
+		StartTime: 1616986800,
+		EndTime:   1617764400,
+		LimitedDiscountSkuList: []*models.LimitedDiscountSkuList{
+			&models.LimitedDiscountSkuList{
+				SkuId:     18006617,
+				SalePrice: 0,
+				SaleStock: 12,
+			},
+		},
+	})
+	fmt.Println(util.JsonEncode(resp), err)
+}
+
+func TestSpuLimitedGetList(t *testing.T) {
+	m := ministore.New(&config.Config{
+		LogPrefix:   "ministore",
+		AccessToken: "43_qAxTOftN_eEqtdSoQnbuYjWDqorgys3phCVrHBl8_JPrJpFUVq6mr3vyMMSY1Hr5wecPkmfGkNRSCV--Y8_6j4dy8C1-rytrzCIxpPQOPaHmH2hIiFjE_yAr4XVYaXCKJq9t5gqPYoT4fm45GBHeAJDQLR",
+	})
+	resp, _, err := m.GetSpu().SpuLimitedGetList(&models.SpuLimitedListRequest{})
+	fmt.Println(util.JsonEncode(resp), err)
+}
+
+func TestSpuLimitedDiscountUpdate(t *testing.T) {
+	m := ministore.New(&config.Config{
+		LogPrefix:   "ministore",
+		AccessToken: "43_qAxTOftN_eEqtdSoQnbuYjWDqorgys3phCVrHBl8_JPrJpFUVq6mr3vyMMSY1Hr5wecPkmfGkNRSCV--Y8_6j4dy8C1-rytrzCIxpPQOPaHmH2hIiFjE_yAr4XVYaXCKJq9t5gqPYoT4fm45GBHeAJDQLR",
+	})
+	resp, _, err := m.GetSpu().SpuLimitedDiscountUpdate(&models.SpuLimitedDiscountUpdateRequest{
+		TaskId: 377486,
+		Status: 1,
 	})
 	fmt.Println(util.JsonEncode(resp), err)
 }

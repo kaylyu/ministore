@@ -6,9 +6,12 @@ import (
 )
 
 const (
-	apiSwitch      = "/product/decoration/decoration_service"
-	apiExperience  = "/product/decoration/decoration_service_experience"
-	apiCheckStatus = "/product/decoration/wxaproduct_decoration_check_status"
+	apiSwitch                  = "/product/decoration/decoration_service"
+	apiExperience              = "/product/decoration/decoration_service_experience"
+	apiCheckStatus             = "/product/decoration/wxaproduct_decoration_check_status"
+	apiPressureTest            = "/product/decoration/wxaproduct_decoration_pressure_test"
+	apiQueryPressureTestStatus = "/product/decoration/wxaproduct_decoration_query_pressure_test_status"
+	apiGetPressureTestReport   = "/product/decoration/wxaproduct_decoration_get_pressure_test_report"
 )
 
 //装修
@@ -47,5 +50,32 @@ https://developers.weixin.qq.com/miniprogram/dev/framework/ministore/minishopope
 */
 func (d *Decoration) DecorationCheckStatus(request *models.DecorationCheckStatusRequest) (response models.DecorationCheckStatusResponse, body string, err error) {
 	body, err = d.core.HttpPostJson(apiCheckStatus, request, &response)
+	return
+}
+
+/*
+发起压测
+https://developers.weixin.qq.com/miniprogram/dev/framework/ministore/minishopopencomponent/API/service/decoration/decoration_pressure_test.html
+*/
+func (d *Decoration) DecorationPressureTest(request *models.DecorationPressureTestRequest) (response models.DecorationPressureTestResponse, body string, err error) {
+	body, err = d.core.HttpPostJson(apiPressureTest, request, &response)
+	return
+}
+
+/*
+查询压测状态
+https://developers.weixin.qq.com/miniprogram/dev/framework/ministore/minishopopencomponent/API/service/decoration/decoration_query_pressure_test_status.html
+*/
+func (d *Decoration) DecorationPressureTestStatus(request *models.DecorationPressureTestStatusRequest) (response models.DecorationPressureTestStatusResponse, body string, err error) {
+	body, err = d.core.HttpPostJson(apiQueryPressureTestStatus, request, &response)
+	return
+}
+
+/*
+获取压测报告
+https://developers.weixin.qq.com/miniprogram/dev/framework/ministore/minishopopencomponent/API/service/decoration/decoration_get_pressure_test_report.html
+*/
+func (d *Decoration) DecorationGetPressureTestReport(request *models.DecorationGetPressureTestReportRequest) (response models.DecorationGetPressureTestReportResponse, body string, err error) {
+	body, err = d.core.HttpPostJson(apiGetPressureTestReport, request, &response)
 	return
 }
